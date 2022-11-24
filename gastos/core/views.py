@@ -9,5 +9,3 @@ class ListGastosView(TemplateView):
 
     template_name = 'core/gastos_list.html'
 
-class AddGastosView(TemplateView):
-    template_name = 'core/gastos_add.html'
