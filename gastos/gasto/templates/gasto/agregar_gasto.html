@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>Gastos</title>
+</head>
+<body>
+<h1>Agregar Gasto</h1>
+<form method="POST">
+    <div>
+        {{form.nombre}}
+        <label for="floatingInput">Nombre</label>
+        {{form.fecha}}
+        <label for="floatingInput">fecha</label>
+        {{form.descripcion}}
+        <label for="floatingInput">Descripcion</label>
+        {{form.importe}}
+        <label for="floatingInput">Importe</label>
+        {{form.categoria}}
+        <label for="floatingInput">Categoria</label>
+
+    </div>
+    <button type="submit">Agregar</button>
+    {% csrf_token %}
+</form>
+</body>
+</html>
