@@ -77,15 +77,6 @@ WSGI_APPLICATION = 'gastos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'Localhost',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'pokemon70.01',
-        'NAME': 'gastos_db',
-        'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
     }
 }
 
