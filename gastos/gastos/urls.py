@@ -22,5 +22,6 @@ urlpatterns = [
     path('', home, name='home'),
     path('add', entrada_gasto, name='add'),
     path('list', lista_gastos, name='list'),
-    path('total', total, name='total')
+    path('total', total, name='total'),
+    # path('register/', name='register')
 ]

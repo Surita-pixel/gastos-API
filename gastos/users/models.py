@@ -17,11 +17,14 @@ class Usuario(AbstractBaseUser):
     def __str__(self):
         return self.usuario.username
 
-@receiver(post_save, sender=User)
+class Perfil(models.Model):
+    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+
+@receiver(post_save, sender=Usuario)
 def crear_usuario_perfil(sender, instance, created, **kwargs):
     if created:
         Perfil.objects.create(usuario=instance)
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=Usuario)
 def guardar_usuario_perfil(sender, instance, **kawargs):
-    instance.perfil.save()
+    instance.Perfil.save()
