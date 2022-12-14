@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from gasto.views import home, lista_gastos, total, entrada_gasto
+from users.views import signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +24,5 @@ urlpatterns = [
     path('add', entrada_gasto, name='add'),
     path('list', lista_gastos, name='list'),
     path('total', total, name='total'),
-    # path('register/', name='register')
+    path('register/', signup,name='register')
 ]

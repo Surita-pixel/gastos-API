@@ -9,6 +9,8 @@ class SignupForm(UserCreationForm):
     
     class Meta:
         model = Usuario
-        fiels = (
-            '__all__'
+        exclude = (
+            'is_staff',
+            'is_superuser',
+            'last_login'
         )
