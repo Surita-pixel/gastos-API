@@ -9,6 +9,8 @@ from django.http import JsonResponse, HttpResponse
 from gasto.models import Gasto
 from gasto.GastoForm import GastosForm
 
+#from users.models import Perfil
+
 # Create your views here.
 
 def home(request):
@@ -28,6 +30,19 @@ def lista_gastos(request):
             'messege': "gastos don't found"
         }
     
+    return JsonResponse(datos)
+
+def prueba(request):
+    if Perfil.is_active() == True:
+        datos = {
+            'messege': 'success',
+            'gastos': 'pongo'
+            }
+    
+    else: 
+        datos = {
+            'messege': "inicia sesion"
+        }
     return JsonResponse(datos)
 
 def total(request):

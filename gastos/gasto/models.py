@@ -1,10 +1,10 @@
 from django.db import models
-from users.models import Usuario
+from users.models import Perfil
 
 
 # Create your models here.
 class Gasto(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Perfil, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
     categoria = models.CharField(max_length=50)
     importe = models.DecimalField(max_digits=10, decimal_places=2)

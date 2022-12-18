@@ -1,23 +1,17 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
+# Django
+from django.shortcuts import render
+from django.views.generic import CreateView
+from django.contrib.auth.views import LoginView
 
-from django.http import HttpResponseRedirect
-
-from django.shortcuts import render, redirect
-from .form import SignupForm
-from .models import Usuario, Perfil
+#formulario y modelos
+from django.contrib.auth.models import User
+from .forms import SignUpForm
 
 # Create your views here.
-def signup(request):
-    if request.method == "POST":
-        form = SignupForm()
-        
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
-    else:
-        form = SignupForm()
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    template_name = 'users/register.html'
+    success_url = '/'
 
-    return render(request, 'users/registrate.html', {'form':form})
+class SignInView(LoginView):
+    template_name = 'users/login.html'
