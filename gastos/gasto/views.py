@@ -6,8 +6,11 @@ from django.db.models import Sum
 
 from django.http import JsonResponse, HttpResponse
 
+from django.contrib.auth.models import User
+
 from gasto.models import Gasto
 from gasto.GastoForm import GastosForm
+
 
 #from users.models import Perfil
 
@@ -33,7 +36,7 @@ def lista_gastos(request):
     return JsonResponse(datos)
 
 def prueba(request):
-    if Perfil.is_active() == True:
+    if request.user.is_authenticated:
         datos = {
             'messege': 'success',
             'gastos': 'pongo'
@@ -53,12 +56,19 @@ def total(request):
     return JsonResponse(dato)
 
 def entrada_gasto(request):
-    if request.method == "POST":
-        form = GastosForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('list')
-    else: 
-        form = GastosForm()
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            gasto = GastosForm(request.POST)
+            if gasto.is_valid():
+                gasto = gasto.save(commit=False)
+                gasto.usuario = User.objects.get(id=request.user.id) 
+                gasto.save()
+                return redirect('list')
+
+                
+        else: 
+            gasto = GastosForm()
+    else:
+        return render(request, 'gasto/no_authenticated_user.html')
     
-    return render(request, 'gasto/agregar_gasto.html', {'form':form})
+    return render(request, 'gasto/agregar_gasto.html', {'form':gasto})
