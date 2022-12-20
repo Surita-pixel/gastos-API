@@ -23,11 +23,7 @@ from users import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('add/', entrada_gasto, name='add'),
-    path('list/', lista_gastos, name='list'),
-    path('total/', total, name='total'),
-    #path('register/', sing_up, name='register'),
-    #path('login/', Login.as_view(), name='login'),
+    path('g/', include('gasto.urls')),
     path('test/', prueba, name='teest'),
     path('u/', include('users.urls'))
 ]

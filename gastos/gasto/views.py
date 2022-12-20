@@ -1,39 +1,46 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from django.db.models import Sum
 
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseNotFound
 
 from django.contrib.auth.models import User
 
 from gasto.models import Gasto
 from gasto.GastoForm import GastosForm
 
-
-#from users.models import Perfil
-
 # Create your views here.
-
 def home(request):
     datos = {'messege': 'pong!'}
     return JsonResponse(datos)
 
 def lista_gastos(request):
-    gastos = list(Gasto.objects.values())
-    if len(gastos) > 0:
-        datos = {
-            'messege': 'success',
-            'gastos': gastos
-            }
+    if request.user.is_authenticated:
+        user_id =  User.objects.get(id=request.user.id)
+        gastos = Gasto.objects.filter(usuario_id=user_id)
+
+        if len(gastos) > 0:
+            return render(request, 'gasto/gastos_list.html', {'gastos': gastos})
+
+        else:
+            dato = {'messege':'no se ha encontrado gasto registrado'}
+            return HttpResponse(dato)
+    else:
+        return render(request, 'gasto/no_authenticated_user.html')
+    # gastos = list(Gasto.objects.values())
+    # if len(gastos) > 0:
+    #     datos = {
+    #         'messege': 'success',
+    #         'gastos': gastos
+    #         }
     
-    else: 
-        datos = {
-            'messege': "gastos don't found"
-        }
+    # else: 
+    #     datos = {
+    #         'messege': "gastos don't found"
+    #     }
     
-    return JsonResponse(datos)
+    # return JsonResponse(datos)
 
 def prueba(request):
     if request.user.is_authenticated:

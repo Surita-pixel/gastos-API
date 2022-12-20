@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for gasto in gastos %}
+<ul>{{ gasto }}</ul>
+{% endfor %}
+<div>
+	<p><a href="{% url 'add' %}">agregar gasto</a></p>
+</div>
+<div>
+	<p><a href="{% url 'logout' %}">cerrar sesion</a></p>
+</div>
+	
+
+
+{% endblock %}
