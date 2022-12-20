@@ -146,4 +146,5 @@ cython_debug/
                                                                                                          
 # JSON Files                                                                                             
 *.json               
-__pycache__/                                                                                    
+__pycache__/
+venv/                                                                                    
