@@ -12,8 +12,11 @@ from gasto.GastoForm import GastosForm
 
 # Create your views here.
 def home(request):
-    datos = {'messege': 'pong!'}
-    return JsonResponse(datos)
+    if request.user.is_authenticated:
+        return render(request, 'gasto/home.html')
+    
+    else:
+        return render(request, 'gasto/no_authenticated_user.html')
 
 def lista_gastos(request):
     if request.user.is_authenticated:
@@ -21,39 +24,17 @@ def lista_gastos(request):
         gastos = Gasto.objects.filter(usuario_id=user_id)
 
         if len(gastos) > 0:
-            return render(request, 'gasto/gastos_list.html', {'gastos': gastos})
+            return render(
+                request, 
+                'gasto/gastos_list.html', 
+                {'gastos': gastos}
+                )
 
         else:
             dato = {'messege':'no se ha encontrado gasto registrado'}
             return HttpResponse(dato)
     else:
         return render(request, 'gasto/no_authenticated_user.html')
-    # gastos = list(Gasto.objects.values())
-    # if len(gastos) > 0:
-    #     datos = {
-    #         'messege': 'success',
-    #         'gastos': gastos
-    #         }
-    
-    # else: 
-    #     datos = {
-    #         'messege': "gastos don't found"
-    #     }
-    
-    # return JsonResponse(datos)
-
-def prueba(request):
-    if request.user.is_authenticated:
-        datos = {
-            'messege': 'success',
-            'gastos': 'pongo'
-            }
-    
-    else: 
-        datos = {
-            'messege': "inicia sesion"
-        }
-    return JsonResponse(datos)
 
 def total(request):
     gastos_totales = Gasto.objects.aggregate(Sum('importe'))

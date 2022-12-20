@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gasto.views import home, lista_gastos, total, entrada_gasto, prueba
+from gasto.views import home, lista_gastos, total, entrada_gasto
 #from users.views import Login, sing_up
 
 from users import urls
@@ -24,6 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('g/', include('gasto.urls')),
-    path('test/', prueba, name='teest'),
     path('u/', include('users.urls'))
 ]

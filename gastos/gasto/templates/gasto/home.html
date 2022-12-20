@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>Bienvenido, deseas <a href="{% url 'add' %}">crear un registro</a> o <a href="{% url 'list' %}">ver la lista</a>  </p>
+    <p><a href="{% url 'logout' %}">cerrar sesion</a></p>
+    
+{% endblock %}

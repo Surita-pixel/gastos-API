@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends 'base.html' %}
 
-    <meta charset="UTF-8">
-    <title>Gastos</title>
-</head>
-<body>
+{% block content %}
+
 <h1>Agregar Gasto</h1>
 <form method="POST">
     <div>
@@ -24,5 +20,6 @@
     <button type="submit">Agregar</button>
     {% csrf_token %}
 </form>
-</body>
-</html>
+<p><a href="{% url 'logout' %}">cerrar sesion</a></p>
+<p><a href="{% url 'home' %}">home</a></p>
+{% endblock %}

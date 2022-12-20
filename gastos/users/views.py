@@ -14,7 +14,13 @@ class SignUpView(CreateView):
     success_url = '/'
 
 class SignInView(LoginView):
-    template_name = 'users/login.html'
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return render(request, 'users/logued.html')
+        
+        else:
+            self.template_name = 'users/login.html'
+            return super().get(request, *args, **kwargs)
 
 class LogOut(LogoutView):
     def logout(self):
