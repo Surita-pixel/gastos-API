@@ -1,5 +1,5 @@
 this proyect was a practice when i i'd practice the lesson around this framework
-and now
+and now:
 
 the capacities:
     * creations and reading of expensives
@@ -27,4 +27,15 @@ MODELS:
 
                     this model have a str method that call the name of themself
 
-for the views, i'd did the better to make the easiest code, the documentacion i'll add letter
+state: we could tell that this proyect is in process. the next step is add frotend of the proyect
+To do: add front and a view with the graph and the  filter by date
+
+How to install:
+        *clone the repository in git local
+        *create a virtual enviroment: py -m venv venv
+        *active venv: ./venv/Scripts/activate.bat
+        *run pip install requirements.txt in your shell
+        *run py manage.py runserver to activate the django's server
+
+
+
